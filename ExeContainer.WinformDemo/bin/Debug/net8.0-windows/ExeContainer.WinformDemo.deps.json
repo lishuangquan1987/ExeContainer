@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ExeContainer.WinformDemo/1.0.0": {
+        "dependencies": {
+          "ExeContainer": "1.0.0"
+        },
+        "runtime": {
+          "ExeContainer.WinformDemo.dll": {}
+        }
+      },
+      "ExeContainer/1.0.0": {
+        "runtime": {
+          "ExeContainer.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ExeContainer.WinformDemo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ExeContainer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

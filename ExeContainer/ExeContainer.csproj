@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows;net472</TargetFrameworks>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <UseWPF>true</UseWPF>
+  </PropertyGroup>
+</Project>
