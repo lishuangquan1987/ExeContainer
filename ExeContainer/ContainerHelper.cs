@@ -9,37 +9,13 @@ namespace ExeContainer
 {
     public class ContainerHelper
     {
-        public Process AppProcess;
-        private IntPtr _handle;
+        /// <summary>
+        /// 嵌入操作超时，默认20s
+        /// </summary>
+        public int EmbedOperationTimeoutSeconds { get; set; } = 20;
+        public Process AppProcess = null;
+        private IntPtr _handle = IntPtr.Zero;
         private int w, h;
-        private void Application_Idle(object sender, EventArgs e)
-        {
-            Application.Idle -= Application_Idle;
-
-            if (this.AppProcess == null) return;
-            if (this.AppProcess.HasExited)
-            {
-                this.AppProcess = null;
-                return;
-            }
-            for (int i = 0; i < 100; i++)
-            {
-                if (AppProcess.MainWindowHandle == IntPtr.Zero)
-                {
-                    Thread.Sleep(1);
-                    continue;
-                }
-            }
-            if (AppProcess.MainWindowHandle == IntPtr.Zero)
-            {
-                return;
-            }
-
-            if (this._handle == null || this._handle == IntPtr.Zero) return;
-
-            var result = EmbedProcess(AppProcess, this._handle, w, h);
-            Console.WriteLine($"嵌入返回值：{result}");
-        }
         private bool EmbedProcess(Process app, IntPtr handle, int w, int h)
         {
             // Get the main handle
@@ -76,6 +52,11 @@ namespace ExeContainer
         {
             try
             {
+                if (AppProcess != null && !AppProcess.HasExited)
+                {
+                    AppProcess.Kill();
+                }
+
                 this._handle = handle;
                 this.w = w;
                 this.h = h;
@@ -85,23 +66,19 @@ namespace ExeContainer
                     UseShellExecute = true,
                     WindowStyle = ProcessWindowStyle.Minimized
                 };
-                //info.WindowStyle = ProcessWindowStyle.Hidden;
                 AppProcess = System.Diagnostics.Process.Start(info);
 
                 AppProcess.Refresh();
 
                 // Wait for process to be created and enter idle condition
                 AppProcess.WaitForInputIdle();
-                //todo:下面这两句会引发 NullReferenceException 异常，不知道怎么回事                
-                //AppProcess.Exited += new EventHandler(AppProcess_Exited);
-                //AppProcess.EnableRaisingEvents = true;
-                if (!await WaitForMainWindowHandle(AppProcess, TimeSpan.FromSeconds(20)))
+
+                if (!await WaitForMainWindowHandle(AppProcess, TimeSpan.FromSeconds(EmbedOperationTimeoutSeconds)))
                 {
                     return false;
                 }
 
-                EmbedProcess(AppProcess, handle, w, h);
-                return true;
+                return EmbedProcess(AppProcess, handle, w, h);
             }
             catch (Exception ex)
             {

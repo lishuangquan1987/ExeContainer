@@ -1,1 +1,7 @@
 .vs/
+ExeContainer/obj/
+ExeContainer/bin/
+ExeContainer.WpfDemo/obj/
+ExeContainer.WpfDemo/bin/
+ExeContainer.WinformDemo/bin/
+ExeContainer.WinformDemo/obj/

@@ -1,7 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net472</TargetFrameworks>
-	  <UseWindowsForms>true</UseWindowsForms>
-	  <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    
+    <!-- NuGet Package Information -->
+    <PackageId>ExeContainer</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>lishuangquan1987</Authors>
+    <Company>ExeContainer</Company>
+    <Description>A modern .NET library for embedding external executable applications into your Windows Forms or WPF applications. This project is based on and improved from bitzhuwei/AppContainer.</Description>
+    <Copyright>Copyright ? 2025</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/lishuangquan1987/ExeContainer</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/lishuangquan1987/ExeContainer</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>exe;embed;container;winforms;wpf;windows;process</PackageTags>
+    <PackageReleaseNotes>Initial release with support for .NET Framework 4.7.2 and .NET 8.0</PackageReleaseNotes>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 </Project>
+
