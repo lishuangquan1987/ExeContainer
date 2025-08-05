@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ExeContainer.WinformDemo
-build_property.ProjectDir = E:\Project2025\ExeContainer\ExeContainer.WinformDemo\
+build_property.ProjectDir = D:\Code\ExeContainer\ExeContainer.WinformDemo\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

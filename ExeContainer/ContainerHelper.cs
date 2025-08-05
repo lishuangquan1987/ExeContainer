@@ -25,15 +25,21 @@ namespace ExeContainer
 
             try
             {
-                // Put it into this container
-                embedResult = Win32Api.SetParent(app.MainWindowHandle, handle);
+                // Remove border and whatnot 
+                long style = Win32Api.GetWindowLong(app.MainWindowHandle, Win32Api.GWL_STYLE);
+                style &= ~Win32Api.WS_CAPTION;
+                style &= ~Win32Api.WS_THICKFRAME;
+                style &= ~Win32Api.WS_POPUP;
+                style |= Win32Api.WS_CHILD;
+                              
+                Win32Api.SetWindowLong(app.MainWindowHandle, Win32Api.GWL_STYLE, style);
             }
             catch (Exception)
             { }
             try
             {
-                // Remove border and whatnot               
-                Win32Api.SetWindowLong(new HandleRef(this._handle, app.MainWindowHandle), Win32Api.GWL_STYLE, Win32Api.WS_VISIBLE);
+                // Put it into this container
+                embedResult = Win32Api.SetParent(app.MainWindowHandle,handle);
             }
             catch (Exception)
             { }

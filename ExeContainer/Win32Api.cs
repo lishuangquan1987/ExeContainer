@@ -7,6 +7,7 @@ namespace ExeContainer
     public class Win32Api
     {
         #region Win32 API
+        
         [DllImport("user32.dll")]
         public static extern bool IsWindowVisible(IntPtr hWnd);
 
@@ -29,14 +30,8 @@ namespace ExeContainer
         [DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]
         public static extern long GetWindowLong(IntPtr hwnd, int nIndex);
 
-        public static IntPtr SetWindowLong(HandleRef hWnd, int nIndex, int dwNewLong)
-        {
-            if (IntPtr.Size == 4)
-            {
-                return SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
-            }
-            return SetWindowLongPtr64(hWnd, nIndex, dwNewLong);
-        }
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, long dwNewLong);
         [DllImport("user32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
         public static extern IntPtr SetWindowLongPtr32(HandleRef hWnd, int nIndex, int dwNewLong);
         [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", CharSet = CharSet.Auto)]
@@ -86,6 +81,11 @@ namespace ExeContainer
         
         [DllImport("user32.dll", EntryPoint = "ShowWindow", SetLastError = true)]
         public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        // 窗口样式常量
+        public const int WS_CAPTION = 0x00C00000;      // 标题栏
+        public const int WS_THICKFRAME = 0x00040000;   // 可调整大小的边框
+        public const int WS_CHILD = 0x40000000;        // 子窗口样式
+        public const int WS_POPUP = 0x40000000;        // 弹出窗口样式
         public const int SWP_NOOWNERZORDER = 0x200;
         public const int SWP_NOREDRAW = 0x8;
         public const int SWP_NOZORDER = 0x4;
@@ -96,10 +96,9 @@ namespace ExeContainer
         public const int SWP_ASYNCWINDOWPOS = 0x4000;
         public const int SWP_NOMOVE = 0x2;
         public const int SWP_NOSIZE = 0x1;
-        public const int GWL_STYLE = (-16);
+        public const int GWL_STYLE = -16;
         public const int WS_VISIBLE = 0x10000000;
         public const int WM_CLOSE = 0x10;
-        public const int WS_CHILD = 0x40000000;
 
         public const int SW_HIDE = 0; //{隐藏, 并且任务栏也没有最小化图标}
         public const int SW_SHOWNORMAL = 1; //{用最近的大小和位置显示, 激活}
