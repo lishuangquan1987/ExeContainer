@@ -29,13 +29,14 @@ namespace ExeContainer
                 long style = Win32Api.GetWindowLong(app.MainWindowHandle, Win32Api.GWL_STYLE);
                 style &= ~Win32Api.WS_CAPTION;
                 style &= ~Win32Api.WS_THICKFRAME;
-                style &= ~Win32Api.WS_POPUP;
-                style |= Win32Api.WS_CHILD;
+                style |= Win32Api.WS_POPUP;
+                // style |= Win32Api.WS_CHILD;
                               
                 Win32Api.SetWindowLong(app.MainWindowHandle, Win32Api.GWL_STYLE, style);
             }
             catch (Exception)
             { }
+            
             try
             {
                 // Put it into this container

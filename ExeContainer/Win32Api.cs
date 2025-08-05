@@ -81,11 +81,14 @@ namespace ExeContainer
         
         [DllImport("user32.dll", EntryPoint = "ShowWindow", SetLastError = true)]
         public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UpdateWindow(IntPtr hWnd);
         // 窗口样式常量
         public const int WS_CAPTION = 0x00C00000;      // 标题栏
         public const int WS_THICKFRAME = 0x00040000;   // 可调整大小的边框
-        public const int WS_CHILD = 0x40000000;        // 子窗口样式
-        public const int WS_POPUP = 0x40000000;        // 弹出窗口样式
+        public const long WS_CHILD = 0x40000000;        // 子窗口样式
+        public const long WS_POPUP = 0x80000000;        // 弹出窗口样式
         public const int SWP_NOOWNERZORDER = 0x200;
         public const int SWP_NOREDRAW = 0x8;
         public const int SWP_NOZORDER = 0x4;
