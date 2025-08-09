@@ -6,7 +6,7 @@
     
     <!-- NuGet Package Information -->
     <PackageId>ExeContainer</PackageId>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>lishuangquan1987</Authors>
     <Company>ExeContainer</Company>
     <Description>A modern .NET library for embedding external executable applications into your Windows Forms or WPF applications. This project is based on and improved from bitzhuwei/AppContainer.</Description>
@@ -27,4 +27,5 @@
     <None Include="../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>
+
 
